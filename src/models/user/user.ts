@@ -2,8 +2,9 @@ import joi from 'joi'
 import mongoose from 'mongoose'
 import jwt from 'jsonwebtoken'
 import config from 'config'
+import {IUser} from './user.t'
 
-const userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema<IUser>({
 	name: {
 		type: String,
 		trim: true,
@@ -30,9 +31,10 @@ const userSchema = new mongoose.Schema({
 userSchema.methods.generateAuthToken = function () {
 	return jwt.sign({_id: this._id, isAdmin: this.isAdmin}, config.get('jwt_key'))
 }
-const User = mongoose.model('User', userSchema)
 
-function validateUser(user) {
+export const User = mongoose.model('User', userSchema)
+
+export function validateUser(user: IUser) {
 	const schema = joi.object({
 		name: joi.string().min(4).max(255).required(),
 		email: joi.string().min(5).max(255).email().required(),
@@ -40,6 +42,3 @@ function validateUser(user) {
 	})
 	return schema.validate(user)
 }
-
-exports.User = User
-exports.validate = validateUser

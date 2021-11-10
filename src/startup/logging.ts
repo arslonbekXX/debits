@@ -1,6 +1,5 @@
 import {add, transports, exceptions} from 'winston'
 import 'express-async-errors'
-import 'winston-mongodb'
 
 export default function () {
 	process.on('unhandledRejection', (err) => {
