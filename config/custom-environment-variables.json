@@ -1,0 +1,5 @@
+{
+	"name": "APP_NAME",
+	"dbURL": "DB_URL",
+	"jwt_key": "JWT_KEY"
+}

@@ -1,0 +1,5 @@
+{
+	"name": "My Express app development",
+	"port": 5001,
+	"dbURL": "mongodb://localhost/debits"
+}

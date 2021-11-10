@@ -1,0 +1,5 @@
+{
+	"name": "My Express app default",
+	"port": 8000,
+	"dbURL": "mongodb://localhost/lear-node-course-db"
+}

@@ -1,8 +1,15 @@
-import express from 'express';
+import express from 'express'
+import {info} from 'winston'
+import {logging, validation, routes, db} from './startup'
+import config from 'config'
+const app = express()
 
-const app = express();
-const port = 4000;
+logging()
+validation()
+routes(app)
+db()
 
+const port = config.get('port')
 app.listen(port, () => {
-  console.log(`Listening on port ${port}...`);
-});
+	info(`Listening on port ${port}...`)
+})
